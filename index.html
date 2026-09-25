@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>Mostafa & Amira Wedding</title>
+<style>
+/* =========================
+   RESET
+========================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f8f6f1;
+    color: #65584c;
+    overflow-x: hidden;
+}
+/* =========================
+   OPENING CURTAINS
+========================= */
+.curtain {
+    position: fixed;
+    top: 0;
+    width: 50%;
+    height: 100vh;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #b49c83 0px,
+            #d5c3ad 22px,
+            #b49c83 45px,
+            #d9c7b2 67px
+        );
+    z-index: 9999;
+    transition:
+        transform 2.5s cubic-bezier(.77,0,.18,1);
+    box-shadow:
+        0 0 35px rgba(70,50,30,.18);
+}
+.curtain.left {
+    left: 0;
+}
+.curtain.right {
+    right: 0;
+}
+.curtain.open.left {
+    transform: translateX(-100%);
+}
+.curtain.open.right {
+    transform: translateX(100%);
+}
+/* =========================
+   INTRO TEXT
+========================= */
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+.intro.hide {
+    opacity: 0;
+}
+.intro h1 {
+    font-size: clamp(28px, 8vw, 65px);
+    font-weight: normal;
+    letter-spacing: 6px;
+    margin-bottom: 18px;
+}
+.intro p {
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+/* =========================
+   HERO
+========================= */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+}
+.hero-content {
+    width: 100%;
+    max-width: 900px;
+    animation: fadeUp 1.8s ease;
+}
+.small-title {
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: #a28d76;
+    margin-bottom: 25px;
+}
+.names {
+    font-size: clamp(48px, 11vw, 95px);
+    font-weight: normal;
+    line-height: 1.05;
+    color: #62564a;
+}
+.amp {
+    color: #bca58d;
+    font-style: italic;
+}
+.line {
+    width: 70px;
+    height: 1px;
+    background: #cdbca7;
+    margin: 25px auto;
+}
+.date {
+    font-size: 17px;
+    letter-spacing: 5px;
+    color: #887663;
+}
+.hero-venue {
+    margin-top: 15px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9b8873;
+    line-height: 1.8;
+}
+.scroll-text {
+    margin-top: 50px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #b19b84;
+    animation: breathe 2s infinite;
+}
+/* =========================
+   SECTIONS
+========================= */
+section {
+    padding: 90px 20px;
+    position: relative;
+}
+.section-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+    color: #685a4e;
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #aa967f;
+    margin-top: 12px;
+    margin-bottom: 40px;
+}
+/* =========================
+   PHOTO
+========================= */
+.photo-section {
+    background: #f3eee6;
+    text-align: center;
+}
+.photo-frame {
+    width: min(380px, 90vw);
+    margin: auto;
+    padding: 14px;
+    position: relative;
+}
+.photo-frame img {
+    width: 100%;
+    display: block;
+    background: white;
+    padding: 7px;
+    border: 1px solid #d5c5b2;
+    box-shadow:
+        0 15px 35px rgba(70,50,30,.12);
+}
+.photo-frame::before {
+    content: "♡";
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    font-size: 42px;
+    color: #bfa68d;
+    z-index: 2;
+}
+.photo-frame::after {
+    content: "♡";
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    font-size: 42px;
+    color: #bfa68d;
+    z-index: 2;
+}
+/* =========================
+   COUNTDOWN
+========================= */
+.countdown {
+    max-width: 760px;
+    margin: auto;
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 15px;
+}
+.count-box {
+    background: rgba(255,255,255,.7);
+    border: 1px solid #ddd1c1;
+    padding: 25px 10px;
+    text-align: center;
+}
+.count-number {
+    display: block;
+    font-size: 34px;
+    color: #806f5e;
+}
+.count-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #a8947d;
+}
+/* =========================
+   CALENDAR
+========================= */
+.calendar-section {
+    background: #f3eee6;
+    text-align: center;
+}
+.calendar {
+    width: min(360px, 94vw);
+    margin: auto;
+    background: #fffdf9;
+    border: 1px solid #d7c8b5;
+    padding: 25px;
+    box-shadow:
+        0 15px 35px rgba(70,50,30,.08);
+}
+.calendar-title {
+    font-size: 23px;
+    color: #6c5e51;
+    margin-bottom: 25px;
+}
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns:
+        repeat(7, 1fr);
+    gap: 5px;
+}
+.weekdays div {
+    font-size: 9px;
+    color: #a18d76;
+    padding-bottom: 8px;
+}
+.days div {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: #786b5d;
+}
+.special-day {
+    position: relative;
+}
+.special-day::before {
+    content: "♡";
+    position: absolute;
+    font-size: 43px;
+    color: #c9b299;
+    z-index: 0;
+}
+.special-day span {
+    position: relative;
+    z-index: 1;
+    color: #705e4c;
+}
+/* =========================
+   DETAILS
+========================= */
+.details {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+.detail {
+    padding: 35px 20px;
+    border-top:
+        1px solid #ded2c2;
+    border-bottom:
+        1px solid #ded2c2;
+    margin-bottom: 25px;
+}
+.detail-icon {
+    font-size: 31px;
+    color: #bca58d;
+    margin-bottom: 10px;
+}
+.detail h3 {
+    font-size: 20px;
+    font-weight: normal;
+    color: #6d5f51;
+    margin-bottom: 12px;
+}
+.detail p {
+    color: #94816d;
+    line-height: 1.9;
+    font-size: 14px;
+}
+/* =========================
+   BUTTONS
+========================= */
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.button {
+    text-decoration: none;
+    border:
+        1px solid #cdbca7;
+    color: #705f4d;
+    padding: 13px 22px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    transition: .3s;
+}
+.button:hover {
+    background: #cdbca7;
+    color: white;
+}
+/* =========================
+   CLOSING
+========================= */
+.closing {
+    text-align: center;
+    background: #f3eee6;
+}
+.closing p {
+    max-width: 600px;
+    margin: 25px auto 0;
+    line-height: 2;
+    color: #968572;
+    font-size: 14px;
+}
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: #ebe4da;
+    color: #9a8771;
+}
+.footer-names {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+footer p {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+/* =========================
+   MUSIC BUTTON
+========================= */
+.music-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border:
+        1px solid #c8b49c;
+    background:
+        rgba(255,253,249,.94);
+    color: #8b765f;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    cursor: pointer;
+    z-index: 9998;
+    box-shadow:
+        0 5px 22px rgba(70,50,30,.15);
+    transition: .3s;
+}
+.music-button:hover {
+    transform: scale(1.08);
+}
+.music-button.playing {
+    animation: musicPulse 1.5s infinite;
+}
+/* =========================
+   FIREWORK
+========================= */
+.firework {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #c5aa8c;
+    pointer-events: none;
+    z-index: 500;
+    animation:
+        firework 1.4s ease-out forwards;
+}
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+@keyframes breathe {
+    0%,100% {
+        opacity: .4;
+        transform:
+            translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform:
+            translateY(6px);
+    }
+}
+@keyframes musicPulse {
+    0%,100% {
+        box-shadow:
+            0 5px 22px rgba(70,50,30,.15);
+    }
+    50% {
+        box-shadow:
+            0 5px 30px rgba(190,160,125,.5);
+    }
+}
+@keyframes firework {
+    0% {
+        opacity: 1;
+        box-shadow:
+            0 0 0 0 #c5aa8c;
+    }
+    100% {
+        opacity: 0;
+        box-shadow:
+            0 -70px 0 1px #c5aa8c,
+            50px -50px 0 1px #c5aa8c,
+            70px 0 0 1px #c5aa8c,
+            50px 50px 0 1px #c5aa8c,
+            0 70px 0 1px #c5aa8c,
+            -50px 50px 0 1px #c5aa8c,
+            -70px 0 0 1px #c5aa8c,
+            -50px -50px 0 1px #c5aa8c;
+    }
+}
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+    section {
+        padding:
+            70px 15px;
+    }
+    .names {
+        font-size: 50px;
+    }
+    .date {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+    .countdown {
+        gap: 7px;
+    }
+    .count-box {
+        padding:
+            18px 5px;
+    }
+    .count-number {
+        font-size: 25px;
+    }
+    .count-label {
+        font-size: 7px;
+    }
+    .music-button {
+        right: 15px;
+        bottom: 15px;
+        width: 50px;
+        height: 50px;
+    }
+}
+</style>
+</head>
+<body>
+<!-- =========================
+     CURTAINS
+========================= -->
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+<!-- =========================
+     INTRO
+========================= -->
+<div class="intro" id="intro">
+    <h1>YOU ARE INVITED</h1>
+    <p>OPEN INVITATION</p>
+</div>
+<!-- =========================
+     HERO
+========================= -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="small-title">
+            TO CELEBRATE THE WEDDING OF
+        </div>
+        <h1 class="names">
+            Mostafa
+            <span class="amp">
+                &
+            </span>
+            Amira
+        </h1>
+        <div class="line"></div>
+        <div class="date">
+            01 · 11 · 2026
+        </div>
+        <div class="hero-venue">
+            Sunday<br>
+            At six o'clock in the evening<br>
+            Al Masa Hotel · Nasr City · Zumorda Hall
+        </div>
+        <div class="scroll-text">
+            SCROLL TO DISCOVER
+        </div>
+    </div>
+</section>
+<!-- =========================
+     PHOTO
+========================= -->
+<section class="photo-section">
+    <h2 class="section-title">
+        Together with love
+    </h2>
+    <p class="section-subtitle">
+        OUR SPECIAL DAY
+    </p>
+    <div class="photo-frame">
+        <img
+            src="d954b11a-fb80-4180-af8d-680d21148b3b.jpeg"
+            alt="Mostafa and Amira"
+        >
+    </div>
+</section>
+<!-- =========================
+     COUNTDOWN
+========================= -->
+<section>
+    <h2 class="section-title">
+        The Countdown
+    </h2>
+    <p class="section-subtitle">
+        UNTIL WE SAY I DO
+    </p>
+    <div class="countdown">
+        <div class="count-box">
+            <span
+                class="count-number"
+                id="days">
+                00
+            </span>
+            <span class="count-label">
+                DAYS
+            </span>
+        </div>
+        <div class="count-box">
+            <span
+                class="count-number"
+                id="hours">
+                00
+            </span>
+            <span class="count-label">
+                HOURS
+            </span>
+        </div>
+        <div class="count-box">
+            <span
+                class="count-number"
+                id="minutes">
+                00
+            </span>
+            <span class="count-label">
+                MINUTES
+            </span>
+        </div>
+        <div class="count-box">
+            <span
+                class="count-number"
+                id="seconds">
+                00
+            </span>
+            <span class="count-label">
+                SECONDS
+            </span>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     CALENDAR
+========================= -->
+<section class="calendar-section">
+    <h2 class="section-title">
+        Save The Date
+    </h2>
+    <p class="section-subtitle">
+        NOVEMBER 2026
+    </p>
+    <div class="calendar">
+        <div class="calendar-title">
+            November 2026
+        </div>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="days">
+            <div class="special-day">
+                <span>1</span>
+            </div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+            <div>18</div>
+            <div>19</div>
+            <div>20</div>
+            <div>21</div>
+            <div>22</div>
+            <div>23</div>
+            <div>24</div>
+            <div>25</div>
+            <div>26</div>
+            <div>27</div>
+            <div>28</div>
+            <div>29</div>
+            <div>30</div>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     DETAILS
+========================= -->
+<section>
+    <h2 class="section-title">
+        Wedding Details
+    </h2>
+    <p class="section-subtitle">
+        WE CAN'T WAIT TO CELEBRATE WITH YOU
+    </p>
+    <div class="details">
+        <!-- DATE -->
+        <div class="detail">
+            <div class="detail-icon">
+                ♡
+            </div>
+            <h3>
+                Date & Time
+            </h3>
+            <p>
+                Sunday<br>
+                1 November 2026<br>
+                At six o'clock in the evening
+            </p>
+        </div>
+        <!-- VENUE -->
+        <div class="detail">
+            <div class="detail-icon">
+                ⌂
+            </div>
+            <h3>
+                Venue
+            </h3>
+            <p>
+                Al Masa Hotel<br>
+                Nasr City<br>
+                Zumorda Hall
+            </p>
+            <div class="buttons">
+                <a
+                    class="button"
+                    href="https://www.google.com/maps/search/?api=1&query=Al+Masa+Hotel+Nasr+City+Cairo"
+                    target="_blank">
+                    VIEW LOCATION
+                </a>
+            </div>
+        </div>
+        <!-- CALENDAR -->
+        <div class="detail">
+            <div class="detail-icon">
+                ♡
+            </div>
+            <h3>
+                Add to Calendar
+            </h3>
+            <p>
+                Save our special day
+                to your calendar.
+            </p>
+            <div class="buttons">
+                <a
+                    class="button"
+                    href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mostafa%20%26%20Amira%20Wedding&dates=20261101T180000%2F20261101T220000&details=Mostafa%20%26%20Amira%20Wedding&location=Al%20Masa%20Hotel%2C%20Nasr%20City%2C%20Cairo"
+                    target="_blank">
+                    ADD TO GOOGLE CALENDAR
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- =========================
+     CLOSING
+========================= -->
+<section class="closing">
+    <h2 class="section-title">
+        Your presence means
+        the world to us
+    </h2>
+    <div class="line"></div>
+    <p>
+        We are so excited to celebrate
+        this beautiful beginning
+        surrounded by the people we love.
+    </p>
+</section>
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    <div class="footer-names">
+        Mostafa & Amira
+    </div>
+    <p>
+        01 · 11 · 2026
+    </p>
+</footer>
+<!-- =========================
+     MUSIC
+========================= -->
+<button
+    id="musicButton"
+    class="music-button"
+    aria-label="Music">
+    ♫
+</button>
+<audio
+    id="weddingMusic"
+    loop
+    preload="auto">
+    <source
+        src="wedding-music.mp3"
+        type="audio/mpeg">
+</audio>
+<script>
+/* =========================
+   OPEN CURTAINS
+========================= */
+window.addEventListener(
+    "load",
+    function() {
+        setTimeout(
+            function() {
+                document
+                    .querySelector(".curtain.left")
+                    .classList.add("open");
+                document
+                    .querySelector(".curtain.right")
+                    .classList.add("open");
+                document
+                    .getElementById("intro")
+                    .classList.add("hide");
+                createFirework();
+                setTimeout(
+                    createFirework,
+                    800
+                );
+            },
+            900
+        );
+    }
+);
+/* =========================
+   COUNTDOWN
+========================= */
+const weddingDate =
+    new Date(
+        "November 1, 2026 18:00:00"
+    ).getTime();
+function updateCountdown() {
+    const now =
+        new Date().getTime();
+    const distance =
+        weddingDate - now;
+    if (distance <= 0) {
+        document
+            .getElementById("days")
+            .innerText = "00";
+        document
+            .getElementById("hours")
+            .innerText = "00";
+        document
+            .getElementById("minutes")
+            .innerText = "00";
+        document
+            .getElementById("seconds")
+            .innerText = "00";
+        return;
+    }
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+    const hours =
+        Math.floor(
+            (distance %
+                (1000 * 60 * 60 * 24))
+            /
+            (1000 * 60 * 60)
+        );
+    const minutes =
+        Math.floor(
+            (distance %
+                (1000 * 60 * 60))
+            /
+            (1000 * 60)
+        );
+    const seconds =
+        Math.floor(
+            (distance %
+                (1000 * 60))
+            /
+            1000
+        );
+    document
+        .getElementById("days")
+        .innerText =
+        String(days)
+        .padStart(2, "0");
+    document
+        .getElementById("hours")
+        .innerText =
+        String(hours)
+        .padStart(2, "0");
+    document
+        .getElementById("minutes")
+        .innerText =
+        String(minutes)
+        .padStart(2, "0");
+    document
+        .getElementById("seconds")
+        .innerText =
+        String(seconds)
+        .padStart(2, "0");
+}
+updateCountdown();
+setInterval(
+    updateCountdown,
+    1000
+);
+/* =========================
+   MUSIC
+========================= */
+const music =
+    document.getElementById(
+        "weddingMusic"
+    );
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+let musicStarted = false;
+/*
+   First touch anywhere on the page
+   starts the music.
+*/
+document.addEventListener(
+    "pointerdown",
+    function startMusic() {
+        if (musicStarted) {
+            return;
+        }
+        music.play()
+            .then(function() {
+                musicStarted = true;
+                musicButton
+                    .classList
+                    .add("playing");
+                musicButton.innerHTML =
+                    "♫";
+            })
+            .catch(function() {});
+    },
+    { once: true }
+);
+/*
+   Music button
+*/
+musicButton.addEventListener(
+    "click",
+    function(event) {
+        event.stopPropagation();
+        if (music.paused) {
+            music.play()
+                .then(function() {
+                    musicStarted = true;
+                    musicButton
+                        .classList
+                        .add("playing");
+                    musicButton.innerHTML =
+                        "♫";
+                });
+        }
+        else {
+            music.pause();
+            musicButton
+                .classList
+                .remove("playing");
+            musicButton.innerHTML =
+                "♪";
+        }
+    }
+);
+/* =========================
+   FIREWORKS
+========================= */
+function createFirework() {
+    const firework =
+        document.createElement(
+            "div"
+        );
+    firework.className =
+        "firework";
+    firework.style.left =
+        (
+            Math.random() * 85 + 7
+        ) + "%";
+    firework.style.top =
+        (
+            Math.random() * 45 + 8
+        ) + "%";
+    document.body.appendChild(
+        firework
+    );
+    setTimeout(
+        function() {
+            firework.remove();
+        },
+        1500
+    );
+}
+</script>
+</body>
+</html>
